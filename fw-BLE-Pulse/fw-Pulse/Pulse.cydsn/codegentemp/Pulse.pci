@@ -1,0 +1,13 @@
+# Pulse
+# 2017-05-11 06:54:11Z
+
+# IO_6@[IOP=(0)][IoId=(6)] is reserved: SWDDebugEnabled
+dont_use_io iocell 0 6
+# IO_7@[IOP=(0)][IoId=(7)] is reserved: SWDDebugEnabled
+dont_use_io iocell 0 7
+dont_use_location p4lpcompcell -1 -1 0
+set_location "ClockGenBlock" m0s8clockgenblockcell -1 -1 0
+set_io "LED(0)" iocell 1 2
+set_io "Motor(0)" iocell 3 7
+set_io "Pulse(0)" iocell 2 3
+set_location "\Pulse_ADC_SAR_Seq:cy_psoc4_sar\" p4sarcell -1 -1 0

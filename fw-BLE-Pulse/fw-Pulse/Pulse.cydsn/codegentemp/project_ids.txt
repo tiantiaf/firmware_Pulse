@@ -1,0 +1,5 @@
+D:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|d227380d-03ad-4654-bf36-f6b42410b863
+D:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|47212060-4bd4-4e41-8732-ef68db9b6ad3
+D:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|a2a7ae28-3742-4d84-adf4-fcc0f4f8c8e0
+D:\Program Files (x86)\Cypress\PSoC Creator\4.0\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|c837dc6e-0579-4276-bfe7-804d0252a8e9
+G:\GitHub_Code\firmware_pulse\fw-pulse\fw-BLE-Motor\fw-stone\Pulse.cydsn\Pulse.cyprj|acc3b511-d118-4fbf-b5aa-44159a3be5d2

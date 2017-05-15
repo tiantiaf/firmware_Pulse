@@ -1,0 +1,104 @@
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/CortexM0/ARM_GCC_493/Debug/BLEApplications.o : G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/BLE_PULSE.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/BLE_PULSE_HAL_PVT.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/BLE_PULSE_STACK_PVT.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/BLE_PULSE_Stack.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/BLE_PULSE_StackGap.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/BLE_PULSE_StackGatt.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/BLE_PULSE_StackGattClient.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/BLE_PULSE_StackGattDb.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/BLE_PULSE_StackGattServer.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/BLE_PULSE_StackHostMain.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/BLE_PULSE_StackL2cap.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/BLE_PULSE_bless_isr.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/BLE_PULSE_custom.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/BLE_PULSE_eventHandler.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/BLE_PULSE_gatt.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/CyFlash.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/CyLFClk.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/CyLib.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/LED.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/LED_aliases.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/Motor.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/Motor_Clock.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/Motor_aliases.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/Pulse.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/Pulse_ADC_SAR_Seq.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/Pulse_ADC_SAR_Seq_IRQ.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/Pulse_ADC_SAR_Seq_intClock.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/Pulse_aliases.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/Stone_PWM.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/Timer_Pulse.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/cmsis_armcc.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/cmsis_gcc.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/core_cm0.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/core_cm0_psoc4.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/core_cmFunc.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/core_cmInstr.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/cyPm.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/cydevice_trm.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/cydisabledsheets.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/cyfitter.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/cyfitter_cfg.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/cypins.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/cytypes.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/ms_isr.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/project.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/tc_isr.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/trigger_isr.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/BLEApplications.c G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/BLEApplications.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Data_Queue.h G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/main.h 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/BLE_PULSE.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/BLE_PULSE_HAL_PVT.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/BLE_PULSE_STACK_PVT.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/BLE_PULSE_Stack.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/BLE_PULSE_StackGap.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/BLE_PULSE_StackGatt.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/BLE_PULSE_StackGattClient.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/BLE_PULSE_StackGattDb.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/BLE_PULSE_StackGattServer.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/BLE_PULSE_StackHostMain.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/BLE_PULSE_StackL2cap.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/BLE_PULSE_bless_isr.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/BLE_PULSE_custom.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/BLE_PULSE_eventHandler.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/BLE_PULSE_gatt.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/CyFlash.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/CyLFClk.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/CyLib.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/LED.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/LED_aliases.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/Motor.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/Motor_Clock.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/Motor_aliases.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/Pulse.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/Pulse_ADC_SAR_Seq.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/Pulse_ADC_SAR_Seq_IRQ.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/Pulse_ADC_SAR_Seq_intClock.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/Pulse_aliases.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/Stone_PWM.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/Timer_Pulse.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/cmsis_armcc.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/cmsis_gcc.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/core_cm0.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/core_cm0_psoc4.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/core_cmFunc.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/core_cmInstr.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/cyPm.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/cydevice_trm.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/cydisabledsheets.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/cyfitter.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/cyfitter_cfg.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/cypins.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/cytypes.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/ms_isr.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/project.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/tc_isr.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Generated_Source/PSoC4/trigger_isr.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/BLEApplications.c : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/BLEApplications.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/Data_Queue.h : 
+
+G:/GitHub_Code/firmware_pulse/fw-pulse/fw-BLE-Motor/fw-stone/Pulse.cydsn/main.h : 
+

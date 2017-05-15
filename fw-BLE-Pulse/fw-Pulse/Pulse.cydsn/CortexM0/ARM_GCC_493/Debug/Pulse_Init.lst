@@ -1,0 +1,1413 @@
+ARM GAS  C:\Users\tiantiaf\AppData\Local\Temp\cclaxls4.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 1
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"Pulse_Init.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.InitializeSystem,"ax",%progbits
+  18              		.align	2
+  19              		.global	InitializeSystem
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	InitializeSystem, %function
+  23              	InitializeSystem:
+  24              	.LFB37:
+  25              		.file 1 "Pulse_Init.c"
+   1:Pulse_Init.c  **** /* ========================================
+   2:Pulse_Init.c  ****  *
+   3:Pulse_Init.c  ****  * Tiantian Feng, 2017
+   4:Pulse_Init.c  ****  * All Rights Reserved
+   5:Pulse_Init.c  ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:Pulse_Init.c  ****  *
+   7:Pulse_Init.c  ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:Pulse_Init.c  ****  * WHICH IS THE PROPERTY OF your company.
+   9:Pulse_Init.c  ****  *
+  10:Pulse_Init.c  ****  * ========================================
+  11:Pulse_Init.c  **** */
+  12:Pulse_Init.c  **** 
+  13:Pulse_Init.c  **** #include "Pulse_Init.h"
+  14:Pulse_Init.c  **** #include "Pulse_Timestamp.h"
+  15:Pulse_Init.c  **** 
+  16:Pulse_Init.c  **** /*******************************************************************************
+  17:Pulse_Init.c  **** * Function Name: InitializeSystem
+  18:Pulse_Init.c  **** ********************************************************************************
+  19:Pulse_Init.c  **** * Summary:
+  20:Pulse_Init.c  **** * Start the components and initialize system.
+  21:Pulse_Init.c  **** *
+  22:Pulse_Init.c  **** * Parameters:
+  23:Pulse_Init.c  **** *  void
+  24:Pulse_Init.c  **** *
+  25:Pulse_Init.c  **** * Return:
+  26:Pulse_Init.c  **** *  void
+  27:Pulse_Init.c  **** *
+  28:Pulse_Init.c  **** *******************************************************************************/
+  29:Pulse_Init.c  **** void InitializeSystem(void)
+  30:Pulse_Init.c  **** {
+  26              		.loc 1 30 0
+  27              		.cfi_startproc
+ARM GAS  C:\Users\tiantiaf\AppData\Local\Temp\cclaxls4.s 			page 2
+
+
+  28 0000 08B5     		push	{r3, lr}
+  29              		.cfi_def_cfa_offset 8
+  30              		.cfi_offset 3, -8
+  31              		.cfi_offset 14, -4
+  31:Pulse_Init.c  **** 	/* Enable global interrupt mask */
+  32:Pulse_Init.c  **** 	CyGlobalIntEnable; 
+  32              		.loc 1 32 0
+  33              	@ 32 "Pulse_Init.c" 1
+  34 0002 62B6     		CPSIE   i
+  35              	@ 0 "" 2
+  33:Pulse_Init.c  **** 		
+  34:Pulse_Init.c  **** 	/* Start BLE component and register the CustomEventHandler function. This 
+  35:Pulse_Init.c  **** 	 * function exposes the events from BLE component for application use */
+  36:Pulse_Init.c  ****     CyBle_Start(CustomEventHandler);
+  36              		.loc 1 36 0
+  37              		.code	16
+  38 0004 0B48     		ldr	r0, .L2
+  39 0006 FFF7FEFF 		bl	CyBle_Start
+  40              	.LVL0:
+  37:Pulse_Init.c  ****     
+  38:Pulse_Init.c  ****     LED_Write(LED_ON);
+  41              		.loc 1 38 0
+  42 000a 0020     		mov	r0, #0
+  43 000c FFF7FEFF 		bl	LED_Write
+  44              	.LVL1:
+  39:Pulse_Init.c  ****     
+  40:Pulse_Init.c  ****     Timer_Pulse_Init();
+  45              		.loc 1 40 0
+  46 0010 FFF7FEFF 		bl	Timer_Pulse_Init
+  47              	.LVL2:
+  41:Pulse_Init.c  ****     Timer_Pulse_Start();
+  48              		.loc 1 41 0
+  49 0014 FFF7FEFF 		bl	Timer_Pulse_Start
+  50              	.LVL3:
+  42:Pulse_Init.c  ****     
+  43:Pulse_Init.c  ****     Pulse_ADC_SAR_Seq_Init();
+  51              		.loc 1 43 0
+  52 0018 FFF7FEFF 		bl	Pulse_ADC_SAR_Seq_Init
+  53              	.LVL4:
+  44:Pulse_Init.c  ****     Pulse_ADC_SAR_Seq_Start();
+  54              		.loc 1 44 0
+  55 001c FFF7FEFF 		bl	Pulse_ADC_SAR_Seq_Start
+  56              	.LVL5:
+  45:Pulse_Init.c  ****     Pulse_ADC_SAR_Seq_StartConvert();
+  57              		.loc 1 45 0
+  58 0020 FFF7FEFF 		bl	Pulse_ADC_SAR_Seq_StartConvert
+  59              	.LVL6:
+  46:Pulse_Init.c  ****     
+  47:Pulse_Init.c  ****     Pulse_ADC_SAR_Seq_IsEndConversion(Pulse_ADC_SAR_Seq_WAIT_FOR_RESULT);
+  60              		.loc 1 47 0
+  61 0024 0220     		mov	r0, #2
+  62 0026 FFF7FEFF 		bl	Pulse_ADC_SAR_Seq_IsEndConversion
+  63              	.LVL7:
+  48:Pulse_Init.c  ****     
+  49:Pulse_Init.c  ****     ms_isr_StartEx(MS_ISR);
+  64              		.loc 1 49 0
+  65 002a 0348     		ldr	r0, .L2+4
+ARM GAS  C:\Users\tiantiaf\AppData\Local\Temp\cclaxls4.s 			page 3
+
+
+  66 002c FFF7FEFF 		bl	ms_isr_StartEx
+  67              	.LVL8:
+  50:Pulse_Init.c  **** }
+  68              		.loc 1 50 0
+  69              		@ sp needed
+  70 0030 08BD     		pop	{r3, pc}
+  71              	.L3:
+  72 0032 C046     		.align	2
+  73              	.L2:
+  74 0034 00000000 		.word	CustomEventHandler
+  75 0038 00000000 		.word	MS_ISR
+  76              		.cfi_endproc
+  77              	.LFE37:
+  78              		.size	InitializeSystem, .-InitializeSystem
+  79              		.section	.text.StopTimer,"ax",%progbits
+  80              		.align	2
+  81              		.global	StopTimer
+  82              		.code	16
+  83              		.thumb_func
+  84              		.type	StopTimer, %function
+  85              	StopTimer:
+  86              	.LFB38:
+  51:Pulse_Init.c  **** 
+  52:Pulse_Init.c  **** 
+  53:Pulse_Init.c  **** void StopTimer(void)
+  54:Pulse_Init.c  **** {
+  87              		.loc 1 54 0
+  88              		.cfi_startproc
+  89 0000 08B5     		push	{r3, lr}
+  90              		.cfi_def_cfa_offset 8
+  91              		.cfi_offset 3, -8
+  92              		.cfi_offset 14, -4
+  55:Pulse_Init.c  ****     ms_isr_Stop();
+  93              		.loc 1 55 0
+  94 0002 FFF7FEFF 		bl	ms_isr_Stop
+  95              	.LVL9:
+  56:Pulse_Init.c  ****     
+  57:Pulse_Init.c  **** }
+  96              		.loc 1 57 0
+  97              		@ sp needed
+  98 0006 08BD     		pop	{r3, pc}
+  99              		.cfi_endproc
+ 100              	.LFE38:
+ 101              		.size	StopTimer, .-StopTimer
+ 102              		.section	.text.ReadPulseData,"ax",%progbits
+ 103              		.align	2
+ 104              		.global	ReadPulseData
+ 105              		.code	16
+ 106              		.thumb_func
+ 107              		.type	ReadPulseData, %function
+ 108              	ReadPulseData:
+ 109              	.LFB39:
+  58:Pulse_Init.c  **** 
+  59:Pulse_Init.c  **** uint16 ReadPulseData(){
+ 110              		.loc 1 59 0
+ 111              		.cfi_startproc
+ 112 0000 08B5     		push	{r3, lr}
+ARM GAS  C:\Users\tiantiaf\AppData\Local\Temp\cclaxls4.s 			page 4
+
+
+ 113              		.cfi_def_cfa_offset 8
+ 114              		.cfi_offset 3, -8
+ 115              		.cfi_offset 14, -4
+ 116              	.LVL10:
+  60:Pulse_Init.c  ****     uint16 pulse = 0;
+  61:Pulse_Init.c  ****     pulse = Pulse_ADC_SAR_Seq_GetResult16(0);
+ 117              		.loc 1 61 0
+ 118 0002 0020     		mov	r0, #0
+ 119 0004 FFF7FEFF 		bl	Pulse_ADC_SAR_Seq_GetResult16
+ 120              	.LVL11:
+ 121 0008 80B2     		uxth	r0, r0
+ 122              	.LVL12:
+  62:Pulse_Init.c  ****     return pulse;
+  63:Pulse_Init.c  **** }
+ 123              		.loc 1 63 0
+ 124              		@ sp needed
+ 125 000a 08BD     		pop	{r3, pc}
+ 126              		.cfi_endproc
+ 127              	.LFE39:
+ 128              		.size	ReadPulseData, .-ReadPulseData
+ 129              		.text
+ 130              	.Letext0:
+ 131              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 132              		.file 3 "Generated_Source\\PSoC4/BLE_PULSE_Stack.h"
+ 133              		.file 4 "Generated_Source\\PSoC4/BLE_PULSE.h"
+ 134              		.file 5 "Generated_Source\\PSoC4/Timer_Pulse.h"
+ 135              		.file 6 "Generated_Source\\PSoC4/Pulse_ADC_SAR_Seq.h"
+ 136              		.file 7 "Generated_Source\\PSoC4/LED.h"
+ 137              		.file 8 "Generated_Source\\PSoC4/ms_isr.h"
+ 138              		.section	.debug_info,"",%progbits
+ 139              	.Ldebug_info0:
+ 140 0000 28030000 		.4byte	0x328
+ 141 0004 0400     		.2byte	0x4
+ 142 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 143 000a 04       		.byte	0x4
+ 144 000b 01       		.uleb128 0x1
+ 145 000c 2E030000 		.4byte	.LASF67
+ 146 0010 01       		.byte	0x1
+ 147 0011 79000000 		.4byte	.LASF68
+ 148 0015 5A020000 		.4byte	.LASF69
+ 149 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 150 001d 00000000 		.4byte	0
+ 151 0021 00000000 		.4byte	.Ldebug_line0
+ 152 0025 02       		.uleb128 0x2
+ 153 0026 01       		.byte	0x1
+ 154 0027 06       		.byte	0x6
+ 155 0028 FF030000 		.4byte	.LASF0
+ 156 002c 02       		.uleb128 0x2
+ 157 002d 01       		.byte	0x1
+ 158 002e 08       		.byte	0x8
+ 159 002f D9030000 		.4byte	.LASF1
+ 160 0033 02       		.uleb128 0x2
+ 161 0034 02       		.byte	0x2
+ 162 0035 05       		.byte	0x5
+ 163 0036 F6000000 		.4byte	.LASF2
+ 164 003a 02       		.uleb128 0x2
+ 165 003b 02       		.byte	0x2
+ARM GAS  C:\Users\tiantiaf\AppData\Local\Temp\cclaxls4.s 			page 5
+
+
+ 166 003c 07       		.byte	0x7
+ 167 003d 9E040000 		.4byte	.LASF3
+ 168 0041 02       		.uleb128 0x2
+ 169 0042 04       		.byte	0x4
+ 170 0043 05       		.byte	0x5
+ 171 0044 07030000 		.4byte	.LASF4
+ 172 0048 02       		.uleb128 0x2
+ 173 0049 04       		.byte	0x4
+ 174 004a 07       		.byte	0x7
+ 175 004b 9F050000 		.4byte	.LASF5
+ 176 004f 02       		.uleb128 0x2
+ 177 0050 08       		.byte	0x8
+ 178 0051 05       		.byte	0x5
+ 179 0052 CC020000 		.4byte	.LASF6
+ 180 0056 02       		.uleb128 0x2
+ 181 0057 08       		.byte	0x8
+ 182 0058 07       		.byte	0x7
+ 183 0059 0B040000 		.4byte	.LASF7
+ 184 005d 03       		.uleb128 0x3
+ 185 005e 04       		.byte	0x4
+ 186 005f 05       		.byte	0x5
+ 187 0060 696E7400 		.ascii	"int\000"
+ 188 0064 02       		.uleb128 0x2
+ 189 0065 04       		.byte	0x4
+ 190 0066 07       		.byte	0x7
+ 191 0067 49040000 		.4byte	.LASF8
+ 192 006b 04       		.uleb128 0x4
+ 193 006c 1D020000 		.4byte	.LASF9
+ 194 0070 02       		.byte	0x2
+ 195 0071 B901     		.2byte	0x1b9
+ 196 0073 2C000000 		.4byte	0x2c
+ 197 0077 04       		.uleb128 0x4
+ 198 0078 CD010000 		.4byte	.LASF10
+ 199 007c 02       		.byte	0x2
+ 200 007d BA01     		.2byte	0x1ba
+ 201 007f 3A000000 		.4byte	0x3a
+ 202 0083 04       		.uleb128 0x4
+ 203 0084 98050000 		.4byte	.LASF11
+ 204 0088 02       		.byte	0x2
+ 205 0089 BB01     		.2byte	0x1bb
+ 206 008b 48000000 		.4byte	0x48
+ 207 008f 04       		.uleb128 0x4
+ 208 0090 17020000 		.4byte	.LASF12
+ 209 0094 02       		.byte	0x2
+ 210 0095 BD01     		.2byte	0x1bd
+ 211 0097 33000000 		.4byte	0x33
+ 212 009b 02       		.uleb128 0x2
+ 213 009c 04       		.byte	0x4
+ 214 009d 04       		.byte	0x4
+ 215 009e C6020000 		.4byte	.LASF13
+ 216 00a2 02       		.uleb128 0x2
+ 217 00a3 08       		.byte	0x8
+ 218 00a4 04       		.byte	0x4
+ 219 00a5 B1050000 		.4byte	.LASF14
+ 220 00a9 02       		.uleb128 0x2
+ 221 00aa 01       		.byte	0x1
+ 222 00ab 08       		.byte	0x8
+ARM GAS  C:\Users\tiantiaf\AppData\Local\Temp\cclaxls4.s 			page 6
+
+
+ 223 00ac C2040000 		.4byte	.LASF15
+ 224 00b0 04       		.uleb128 0x4
+ 225 00b1 DA020000 		.4byte	.LASF16
+ 226 00b5 02       		.byte	0x2
+ 227 00b6 7502     		.2byte	0x275
+ 228 00b8 BC000000 		.4byte	0xbc
+ 229 00bc 05       		.uleb128 0x5
+ 230 00bd 04       		.byte	0x4
+ 231 00be C2000000 		.4byte	0xc2
+ 232 00c2 06       		.uleb128 0x6
+ 233 00c3 02       		.uleb128 0x2
+ 234 00c4 04       		.byte	0x4
+ 235 00c5 07       		.byte	0x7
+ 236 00c6 00010000 		.4byte	.LASF17
+ 237 00ca 07       		.uleb128 0x7
+ 238 00cb 04       		.byte	0x4
+ 239 00cc 05       		.uleb128 0x5
+ 240 00cd 04       		.byte	0x4
+ 241 00ce D2000000 		.4byte	0xd2
+ 242 00d2 08       		.uleb128 0x8
+ 243 00d3 E2000000 		.4byte	0xe2
+ 244 00d7 09       		.uleb128 0x9
+ 245 00d8 83000000 		.4byte	0x83
+ 246 00dc 09       		.uleb128 0x9
+ 247 00dd CA000000 		.4byte	0xca
+ 248 00e1 00       		.byte	0
+ 249 00e2 0A       		.uleb128 0xa
+ 250 00e3 02       		.byte	0x2
+ 251 00e4 03       		.byte	0x3
+ 252 00e5 0204     		.2byte	0x402
+ 253 00e7 B9010000 		.4byte	0x1b9
+ 254 00eb 0B       		.uleb128 0xb
+ 255 00ec 09010000 		.4byte	.LASF18
+ 256 00f0 00       		.sleb128 0
+ 257 00f1 0B       		.uleb128 0xb
+ 258 00f2 76010000 		.4byte	.LASF19
+ 259 00f6 01       		.sleb128 1
+ 260 00f7 0B       		.uleb128 0xb
+ 261 00f8 D4010000 		.4byte	.LASF20
+ 262 00fc 02       		.sleb128 2
+ 263 00fd 0B       		.uleb128 0xb
+ 264 00fe 12050000 		.4byte	.LASF21
+ 265 0102 03       		.sleb128 3
+ 266 0103 0B       		.uleb128 0xb
+ 267 0104 A3020000 		.4byte	.LASF22
+ 268 0108 04       		.sleb128 4
+ 269 0109 0B       		.uleb128 0xb
+ 270 010a 94010000 		.4byte	.LASF23
+ 271 010e 05       		.sleb128 5
+ 272 010f 0B       		.uleb128 0xb
+ 273 0110 40020000 		.4byte	.LASF24
+ 274 0114 06       		.sleb128 6
+ 275 0115 0B       		.uleb128 0xb
+ 276 0116 BC030000 		.4byte	.LASF25
+ 277 011a 07       		.sleb128 7
+ 278 011b 0B       		.uleb128 0xb
+ 279 011c 10030000 		.4byte	.LASF26
+ARM GAS  C:\Users\tiantiaf\AppData\Local\Temp\cclaxls4.s 			page 7
+
+
+ 280 0120 08       		.sleb128 8
+ 281 0121 0B       		.uleb128 0xb
+ 282 0122 34040000 		.4byte	.LASF27
+ 283 0126 09       		.sleb128 9
+ 284 0127 0B       		.uleb128 0xb
+ 285 0128 5F000000 		.4byte	.LASF28
+ 286 012c 0A       		.sleb128 10
+ 287 012d 0B       		.uleb128 0xb
+ 288 012e E7020000 		.4byte	.LASF29
+ 289 0132 0B       		.sleb128 11
+ 290 0133 0B       		.uleb128 0xb
+ 291 0134 A4000000 		.4byte	.LASF30
+ 292 0138 0C       		.sleb128 12
+ 293 0139 0B       		.uleb128 0xb
+ 294 013a 56040000 		.4byte	.LASF31
+ 295 013e 0D       		.sleb128 13
+ 296 013f 0B       		.uleb128 0xb
+ 297 0140 25000000 		.4byte	.LASF32
+ 298 0144 0E       		.sleb128 14
+ 299 0145 0B       		.uleb128 0xb
+ 300 0146 00000000 		.4byte	.LASF33
+ 301 014a 0F       		.sleb128 15
+ 302 014b 0B       		.uleb128 0xb
+ 303 014c 91060000 		.4byte	.LASF34
+ 304 0150 10       		.sleb128 16
+ 305 0151 0B       		.uleb128 0xb
+ 306 0152 D2000000 		.4byte	.LASF35
+ 307 0156 11       		.sleb128 17
+ 308 0157 0B       		.uleb128 0xb
+ 309 0158 E0050000 		.4byte	.LASF36
+ 310 015c 12       		.sleb128 18
+ 311 015d 0B       		.uleb128 0xb
+ 312 015e B8050000 		.4byte	.LASF37
+ 313 0162 13       		.sleb128 19
+ 314 0163 0B       		.uleb128 0xb
+ 315 0164 34060000 		.4byte	.LASF38
+ 316 0168 27       		.sleb128 39
+ 317 0169 0B       		.uleb128 0xb
+ 318 016a 18010000 		.4byte	.LASF39
+ 319 016e 28       		.sleb128 40
+ 320 016f 0B       		.uleb128 0xb
+ 321 0170 5A010000 		.4byte	.LASF40
+ 322 0174 29       		.sleb128 41
+ 323 0175 0B       		.uleb128 0xb
+ 324 0176 3D010000 		.4byte	.LASF41
+ 325 017a 2A       		.sleb128 42
+ 326 017b 0B       		.uleb128 0xb
+ 327 017c 37050000 		.4byte	.LASF42
+ 328 0180 2B       		.sleb128 43
+ 329 0181 0B       		.uleb128 0xb
+ 330 0182 E7030000 		.4byte	.LASF43
+ 331 0186 2C       		.sleb128 44
+ 332 0187 0B       		.uleb128 0xb
+ 333 0188 DE040000 		.4byte	.LASF44
+ 334 018c FE01     		.sleb128 254
+ 335 018e 0B       		.uleb128 0xb
+ 336 018f 67060000 		.4byte	.LASF45
+ARM GAS  C:\Users\tiantiaf\AppData\Local\Temp\cclaxls4.s 			page 8
+
+
+ 337 0193 FF01     		.sleb128 255
+ 338 0195 0B       		.uleb128 0xb
+ 339 0196 1B060000 		.4byte	.LASF46
+ 340 019a 8002     		.sleb128 256
+ 341 019c 0B       		.uleb128 0xb
+ 342 019d BF060000 		.4byte	.LASF47
+ 343 01a1 8102     		.sleb128 257
+ 344 01a3 0B       		.uleb128 0xb
+ 345 01a4 7B040000 		.4byte	.LASF48
+ 346 01a8 8202     		.sleb128 258
+ 347 01aa 0B       		.uleb128 0xb
+ 348 01ab 77060000 		.4byte	.LASF49
+ 349 01af 8302     		.sleb128 259
+ 350 01b1 0B       		.uleb128 0xb
+ 351 01b2 C7040000 		.4byte	.LASF50
+ 352 01b6 8402     		.sleb128 260
+ 353 01b8 00       		.byte	0
+ 354 01b9 04       		.uleb128 0x4
+ 355 01ba 23020000 		.4byte	.LASF51
+ 356 01be 03       		.byte	0x3
+ 357 01bf 7104     		.2byte	0x471
+ 358 01c1 E2000000 		.4byte	0xe2
+ 359 01c5 04       		.uleb128 0x4
+ 360 01c6 4E000000 		.4byte	.LASF52
+ 361 01ca 04       		.byte	0x4
+ 362 01cb 0402     		.2byte	0x204
+ 363 01cd CC000000 		.4byte	0xcc
+ 364 01d1 0C       		.uleb128 0xc
+ 365 01d2 B1040000 		.4byte	.LASF53
+ 366 01d6 01       		.byte	0x1
+ 367 01d7 1D       		.byte	0x1d
+ 368 01d8 00000000 		.4byte	.LFB37
+ 369 01dc 3C000000 		.4byte	.LFE37-.LFB37
+ 370 01e0 01       		.uleb128 0x1
+ 371 01e1 9C       		.byte	0x9c
+ 372 01e2 4C020000 		.4byte	0x24c
+ 373 01e6 0D       		.uleb128 0xd
+ 374 01e7 0A000000 		.4byte	.LVL0
+ 375 01eb A3020000 		.4byte	0x2a3
+ 376 01ef 0E       		.uleb128 0xe
+ 377 01f0 10000000 		.4byte	.LVL1
+ 378 01f4 B9020000 		.4byte	0x2b9
+ 379 01f8 02020000 		.4byte	0x202
+ 380 01fc 0F       		.uleb128 0xf
+ 381 01fd 01       		.uleb128 0x1
+ 382 01fe 50       		.byte	0x50
+ 383 01ff 01       		.uleb128 0x1
+ 384 0200 30       		.byte	0x30
+ 385 0201 00       		.byte	0
+ 386 0202 0D       		.uleb128 0xd
+ 387 0203 14000000 		.4byte	.LVL2
+ 388 0207 CA020000 		.4byte	0x2ca
+ 389 020b 0D       		.uleb128 0xd
+ 390 020c 18000000 		.4byte	.LVL3
+ 391 0210 D1020000 		.4byte	0x2d1
+ 392 0214 0D       		.uleb128 0xd
+ 393 0215 1C000000 		.4byte	.LVL4
+ARM GAS  C:\Users\tiantiaf\AppData\Local\Temp\cclaxls4.s 			page 9
+
+
+ 394 0219 D8020000 		.4byte	0x2d8
+ 395 021d 0D       		.uleb128 0xd
+ 396 021e 20000000 		.4byte	.LVL5
+ 397 0222 DF020000 		.4byte	0x2df
+ 398 0226 0D       		.uleb128 0xd
+ 399 0227 24000000 		.4byte	.LVL6
+ 400 022b E6020000 		.4byte	0x2e6
+ 401 022f 0E       		.uleb128 0xe
+ 402 0230 2A000000 		.4byte	.LVL7
+ 403 0234 ED020000 		.4byte	0x2ed
+ 404 0238 42020000 		.4byte	0x242
+ 405 023c 0F       		.uleb128 0xf
+ 406 023d 01       		.uleb128 0x1
+ 407 023e 50       		.byte	0x50
+ 408 023f 01       		.uleb128 0x1
+ 409 0240 32       		.byte	0x32
+ 410 0241 00       		.byte	0
+ 411 0242 0D       		.uleb128 0xd
+ 412 0243 30000000 		.4byte	.LVL8
+ 413 0247 02030000 		.4byte	0x302
+ 414 024b 00       		.byte	0
+ 415 024c 0C       		.uleb128 0xc
+ 416 024d 36020000 		.4byte	.LASF54
+ 417 0251 01       		.byte	0x1
+ 418 0252 35       		.byte	0x35
+ 419 0253 00000000 		.4byte	.LFB38
+ 420 0257 08000000 		.4byte	.LFE38-.LFB38
+ 421 025b 01       		.uleb128 0x1
+ 422 025c 9C       		.byte	0x9c
+ 423 025d 6B020000 		.4byte	0x26b
+ 424 0261 0D       		.uleb128 0xd
+ 425 0262 06000000 		.4byte	.LVL9
+ 426 0266 13030000 		.4byte	0x313
+ 427 026a 00       		.byte	0
+ 428 026b 10       		.uleb128 0x10
+ 429 026c 0D060000 		.4byte	.LASF55
+ 430 0270 01       		.byte	0x1
+ 431 0271 3B       		.byte	0x3b
+ 432 0272 77000000 		.4byte	0x77
+ 433 0276 00000000 		.4byte	.LFB39
+ 434 027a 0C000000 		.4byte	.LFE39-.LFB39
+ 435 027e 01       		.uleb128 0x1
+ 436 027f 9C       		.byte	0x9c
+ 437 0280 A3020000 		.4byte	0x2a3
+ 438 0284 11       		.uleb128 0x11
+ 439 0285 11020000 		.4byte	.LASF70
+ 440 0289 01       		.byte	0x1
+ 441 028a 3C       		.byte	0x3c
+ 442 028b 77000000 		.4byte	0x77
+ 443 028f 00000000 		.4byte	.LLST0
+ 444 0293 12       		.uleb128 0x12
+ 445 0294 08000000 		.4byte	.LVL11
+ 446 0298 1A030000 		.4byte	0x31a
+ 447 029c 0F       		.uleb128 0xf
+ 448 029d 01       		.uleb128 0x1
+ 449 029e 50       		.byte	0x50
+ 450 029f 01       		.uleb128 0x1
+ARM GAS  C:\Users\tiantiaf\AppData\Local\Temp\cclaxls4.s 			page 10
+
+
+ 451 02a0 30       		.byte	0x30
+ 452 02a1 00       		.byte	0
+ 453 02a2 00       		.byte	0
+ 454 02a3 13       		.uleb128 0x13
+ 455 02a4 8C050000 		.4byte	.LASF61
+ 456 02a8 04       		.byte	0x4
+ 457 02a9 7102     		.2byte	0x271
+ 458 02ab B9010000 		.4byte	0x1b9
+ 459 02af B9020000 		.4byte	0x2b9
+ 460 02b3 09       		.uleb128 0x9
+ 461 02b4 C5010000 		.4byte	0x1c5
+ 462 02b8 00       		.byte	0
+ 463 02b9 14       		.uleb128 0x14
+ 464 02ba 03060000 		.4byte	.LASF63
+ 465 02be 07       		.byte	0x7
+ 466 02bf 33       		.byte	0x33
+ 467 02c0 CA020000 		.4byte	0x2ca
+ 468 02c4 09       		.uleb128 0x9
+ 469 02c5 6B000000 		.4byte	0x6b
+ 470 02c9 00       		.byte	0
+ 471 02ca 15       		.uleb128 0x15
+ 472 02cb 56060000 		.4byte	.LASF56
+ 473 02cf 05       		.byte	0x5
+ 474 02d0 8A       		.byte	0x8a
+ 475 02d1 15       		.uleb128 0x15
+ 476 02d2 22040000 		.4byte	.LASF57
+ 477 02d6 05       		.byte	0x5
+ 478 02d7 5A       		.byte	0x5a
+ 479 02d8 15       		.uleb128 0x15
+ 480 02d9 BB000000 		.4byte	.LASF58
+ 481 02dd 06       		.byte	0x6
+ 482 02de 9A       		.byte	0x9a
+ 483 02df 15       		.uleb128 0x15
+ 484 02e0 FA040000 		.4byte	.LASF59
+ 485 02e4 06       		.byte	0x6
+ 486 02e5 98       		.byte	0x98
+ 487 02e6 15       		.uleb128 0x15
+ 488 02e7 F2010000 		.4byte	.LASF60
+ 489 02eb 06       		.byte	0x6
+ 490 02ec 9C       		.byte	0x9c
+ 491 02ed 16       		.uleb128 0x16
+ 492 02ee 6A050000 		.4byte	.LASF62
+ 493 02f2 06       		.byte	0x6
+ 494 02f3 9E       		.byte	0x9e
+ 495 02f4 83000000 		.4byte	0x83
+ 496 02f8 02030000 		.4byte	0x302
+ 497 02fc 09       		.uleb128 0x9
+ 498 02fd 83000000 		.4byte	0x83
+ 499 0301 00       		.byte	0
+ 500 0302 14       		.uleb128 0x14
+ 501 0303 BE010000 		.4byte	.LASF64
+ 502 0307 08       		.byte	0x8
+ 503 0308 18       		.byte	0x18
+ 504 0309 13030000 		.4byte	0x313
+ 505 030d 09       		.uleb128 0x9
+ 506 030e B0000000 		.4byte	0xb0
+ 507 0312 00       		.byte	0
+ARM GAS  C:\Users\tiantiaf\AppData\Local\Temp\cclaxls4.s 			page 11
+
+
+ 508 0313 15       		.uleb128 0x15
+ 509 0314 B2010000 		.4byte	.LASF65
+ 510 0318 08       		.byte	0x8
+ 511 0319 19       		.byte	0x19
+ 512 031a 17       		.uleb128 0x17
+ 513 031b 86000000 		.4byte	.LASF66
+ 514 031f 06       		.byte	0x6
+ 515 0320 9F       		.byte	0x9f
+ 516 0321 8F000000 		.4byte	0x8f
+ 517 0325 09       		.uleb128 0x9
+ 518 0326 83000000 		.4byte	0x83
+ 519 032a 00       		.byte	0
+ 520 032b 00       		.byte	0
+ 521              		.section	.debug_abbrev,"",%progbits
+ 522              	.Ldebug_abbrev0:
+ 523 0000 01       		.uleb128 0x1
+ 524 0001 11       		.uleb128 0x11
+ 525 0002 01       		.byte	0x1
+ 526 0003 25       		.uleb128 0x25
+ 527 0004 0E       		.uleb128 0xe
+ 528 0005 13       		.uleb128 0x13
+ 529 0006 0B       		.uleb128 0xb
+ 530 0007 03       		.uleb128 0x3
+ 531 0008 0E       		.uleb128 0xe
+ 532 0009 1B       		.uleb128 0x1b
+ 533 000a 0E       		.uleb128 0xe
+ 534 000b 55       		.uleb128 0x55
+ 535 000c 17       		.uleb128 0x17
+ 536 000d 11       		.uleb128 0x11
+ 537 000e 01       		.uleb128 0x1
+ 538 000f 10       		.uleb128 0x10
+ 539 0010 17       		.uleb128 0x17
+ 540 0011 00       		.byte	0
+ 541 0012 00       		.byte	0
+ 542 0013 02       		.uleb128 0x2
+ 543 0014 24       		.uleb128 0x24
+ 544 0015 00       		.byte	0
+ 545 0016 0B       		.uleb128 0xb
+ 546 0017 0B       		.uleb128 0xb
+ 547 0018 3E       		.uleb128 0x3e
+ 548 0019 0B       		.uleb128 0xb
+ 549 001a 03       		.uleb128 0x3
+ 550 001b 0E       		.uleb128 0xe
+ 551 001c 00       		.byte	0
+ 552 001d 00       		.byte	0
+ 553 001e 03       		.uleb128 0x3
+ 554 001f 24       		.uleb128 0x24
+ 555 0020 00       		.byte	0
+ 556 0021 0B       		.uleb128 0xb
+ 557 0022 0B       		.uleb128 0xb
+ 558 0023 3E       		.uleb128 0x3e
+ 559 0024 0B       		.uleb128 0xb
+ 560 0025 03       		.uleb128 0x3
+ 561 0026 08       		.uleb128 0x8
+ 562 0027 00       		.byte	0
+ 563 0028 00       		.byte	0
+ 564 0029 04       		.uleb128 0x4
+ARM GAS  C:\Users\tiantiaf\AppData\Local\Temp\cclaxls4.s 			page 12
+
+
+ 565 002a 16       		.uleb128 0x16
+ 566 002b 00       		.byte	0
+ 567 002c 03       		.uleb128 0x3
+ 568 002d 0E       		.uleb128 0xe
+ 569 002e 3A       		.uleb128 0x3a
+ 570 002f 0B       		.uleb128 0xb
+ 571 0030 3B       		.uleb128 0x3b
+ 572 0031 05       		.uleb128 0x5
+ 573 0032 49       		.uleb128 0x49
+ 574 0033 13       		.uleb128 0x13
+ 575 0034 00       		.byte	0
+ 576 0035 00       		.byte	0
+ 577 0036 05       		.uleb128 0x5
+ 578 0037 0F       		.uleb128 0xf
+ 579 0038 00       		.byte	0
+ 580 0039 0B       		.uleb128 0xb
+ 581 003a 0B       		.uleb128 0xb
+ 582 003b 49       		.uleb128 0x49
+ 583 003c 13       		.uleb128 0x13
+ 584 003d 00       		.byte	0
+ 585 003e 00       		.byte	0
+ 586 003f 06       		.uleb128 0x6
+ 587 0040 15       		.uleb128 0x15
+ 588 0041 00       		.byte	0
+ 589 0042 27       		.uleb128 0x27
+ 590 0043 19       		.uleb128 0x19
+ 591 0044 00       		.byte	0
+ 592 0045 00       		.byte	0
+ 593 0046 07       		.uleb128 0x7
+ 594 0047 0F       		.uleb128 0xf
+ 595 0048 00       		.byte	0
+ 596 0049 0B       		.uleb128 0xb
+ 597 004a 0B       		.uleb128 0xb
+ 598 004b 00       		.byte	0
+ 599 004c 00       		.byte	0
+ 600 004d 08       		.uleb128 0x8
+ 601 004e 15       		.uleb128 0x15
+ 602 004f 01       		.byte	0x1
+ 603 0050 27       		.uleb128 0x27
+ 604 0051 19       		.uleb128 0x19
+ 605 0052 01       		.uleb128 0x1
+ 606 0053 13       		.uleb128 0x13
+ 607 0054 00       		.byte	0
+ 608 0055 00       		.byte	0
+ 609 0056 09       		.uleb128 0x9
+ 610 0057 05       		.uleb128 0x5
+ 611 0058 00       		.byte	0
+ 612 0059 49       		.uleb128 0x49
+ 613 005a 13       		.uleb128 0x13
+ 614 005b 00       		.byte	0
+ 615 005c 00       		.byte	0
+ 616 005d 0A       		.uleb128 0xa
+ 617 005e 04       		.uleb128 0x4
+ 618 005f 01       		.byte	0x1
+ 619 0060 0B       		.uleb128 0xb
+ 620 0061 0B       		.uleb128 0xb
+ 621 0062 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\tiantiaf\AppData\Local\Temp\cclaxls4.s 			page 13
+
+
+ 622 0063 0B       		.uleb128 0xb
+ 623 0064 3B       		.uleb128 0x3b
+ 624 0065 05       		.uleb128 0x5
+ 625 0066 01       		.uleb128 0x1
+ 626 0067 13       		.uleb128 0x13
+ 627 0068 00       		.byte	0
+ 628 0069 00       		.byte	0
+ 629 006a 0B       		.uleb128 0xb
+ 630 006b 28       		.uleb128 0x28
+ 631 006c 00       		.byte	0
+ 632 006d 03       		.uleb128 0x3
+ 633 006e 0E       		.uleb128 0xe
+ 634 006f 1C       		.uleb128 0x1c
+ 635 0070 0D       		.uleb128 0xd
+ 636 0071 00       		.byte	0
+ 637 0072 00       		.byte	0
+ 638 0073 0C       		.uleb128 0xc
+ 639 0074 2E       		.uleb128 0x2e
+ 640 0075 01       		.byte	0x1
+ 641 0076 3F       		.uleb128 0x3f
+ 642 0077 19       		.uleb128 0x19
+ 643 0078 03       		.uleb128 0x3
+ 644 0079 0E       		.uleb128 0xe
+ 645 007a 3A       		.uleb128 0x3a
+ 646 007b 0B       		.uleb128 0xb
+ 647 007c 3B       		.uleb128 0x3b
+ 648 007d 0B       		.uleb128 0xb
+ 649 007e 27       		.uleb128 0x27
+ 650 007f 19       		.uleb128 0x19
+ 651 0080 11       		.uleb128 0x11
+ 652 0081 01       		.uleb128 0x1
+ 653 0082 12       		.uleb128 0x12
+ 654 0083 06       		.uleb128 0x6
+ 655 0084 40       		.uleb128 0x40
+ 656 0085 18       		.uleb128 0x18
+ 657 0086 9742     		.uleb128 0x2117
+ 658 0088 19       		.uleb128 0x19
+ 659 0089 01       		.uleb128 0x1
+ 660 008a 13       		.uleb128 0x13
+ 661 008b 00       		.byte	0
+ 662 008c 00       		.byte	0
+ 663 008d 0D       		.uleb128 0xd
+ 664 008e 898201   		.uleb128 0x4109
+ 665 0091 00       		.byte	0
+ 666 0092 11       		.uleb128 0x11
+ 667 0093 01       		.uleb128 0x1
+ 668 0094 31       		.uleb128 0x31
+ 669 0095 13       		.uleb128 0x13
+ 670 0096 00       		.byte	0
+ 671 0097 00       		.byte	0
+ 672 0098 0E       		.uleb128 0xe
+ 673 0099 898201   		.uleb128 0x4109
+ 674 009c 01       		.byte	0x1
+ 675 009d 11       		.uleb128 0x11
+ 676 009e 01       		.uleb128 0x1
+ 677 009f 31       		.uleb128 0x31
+ 678 00a0 13       		.uleb128 0x13
+ARM GAS  C:\Users\tiantiaf\AppData\Local\Temp\cclaxls4.s 			page 14
+
+
+ 679 00a1 01       		.uleb128 0x1
+ 680 00a2 13       		.uleb128 0x13
+ 681 00a3 00       		.byte	0
+ 682 00a4 00       		.byte	0
+ 683 00a5 0F       		.uleb128 0xf
+ 684 00a6 8A8201   		.uleb128 0x410a
+ 685 00a9 00       		.byte	0
+ 686 00aa 02       		.uleb128 0x2
+ 687 00ab 18       		.uleb128 0x18
+ 688 00ac 9142     		.uleb128 0x2111
+ 689 00ae 18       		.uleb128 0x18
+ 690 00af 00       		.byte	0
+ 691 00b0 00       		.byte	0
+ 692 00b1 10       		.uleb128 0x10
+ 693 00b2 2E       		.uleb128 0x2e
+ 694 00b3 01       		.byte	0x1
+ 695 00b4 3F       		.uleb128 0x3f
+ 696 00b5 19       		.uleb128 0x19
+ 697 00b6 03       		.uleb128 0x3
+ 698 00b7 0E       		.uleb128 0xe
+ 699 00b8 3A       		.uleb128 0x3a
+ 700 00b9 0B       		.uleb128 0xb
+ 701 00ba 3B       		.uleb128 0x3b
+ 702 00bb 0B       		.uleb128 0xb
+ 703 00bc 49       		.uleb128 0x49
+ 704 00bd 13       		.uleb128 0x13
+ 705 00be 11       		.uleb128 0x11
+ 706 00bf 01       		.uleb128 0x1
+ 707 00c0 12       		.uleb128 0x12
+ 708 00c1 06       		.uleb128 0x6
+ 709 00c2 40       		.uleb128 0x40
+ 710 00c3 18       		.uleb128 0x18
+ 711 00c4 9742     		.uleb128 0x2117
+ 712 00c6 19       		.uleb128 0x19
+ 713 00c7 01       		.uleb128 0x1
+ 714 00c8 13       		.uleb128 0x13
+ 715 00c9 00       		.byte	0
+ 716 00ca 00       		.byte	0
+ 717 00cb 11       		.uleb128 0x11
+ 718 00cc 34       		.uleb128 0x34
+ 719 00cd 00       		.byte	0
+ 720 00ce 03       		.uleb128 0x3
+ 721 00cf 0E       		.uleb128 0xe
+ 722 00d0 3A       		.uleb128 0x3a
+ 723 00d1 0B       		.uleb128 0xb
+ 724 00d2 3B       		.uleb128 0x3b
+ 725 00d3 0B       		.uleb128 0xb
+ 726 00d4 49       		.uleb128 0x49
+ 727 00d5 13       		.uleb128 0x13
+ 728 00d6 02       		.uleb128 0x2
+ 729 00d7 17       		.uleb128 0x17
+ 730 00d8 00       		.byte	0
+ 731 00d9 00       		.byte	0
+ 732 00da 12       		.uleb128 0x12
+ 733 00db 898201   		.uleb128 0x4109
+ 734 00de 01       		.byte	0x1
+ 735 00df 11       		.uleb128 0x11
+ARM GAS  C:\Users\tiantiaf\AppData\Local\Temp\cclaxls4.s 			page 15
+
+
+ 736 00e0 01       		.uleb128 0x1
+ 737 00e1 31       		.uleb128 0x31
+ 738 00e2 13       		.uleb128 0x13
+ 739 00e3 00       		.byte	0
+ 740 00e4 00       		.byte	0
+ 741 00e5 13       		.uleb128 0x13
+ 742 00e6 2E       		.uleb128 0x2e
+ 743 00e7 01       		.byte	0x1
+ 744 00e8 3F       		.uleb128 0x3f
+ 745 00e9 19       		.uleb128 0x19
+ 746 00ea 03       		.uleb128 0x3
+ 747 00eb 0E       		.uleb128 0xe
+ 748 00ec 3A       		.uleb128 0x3a
+ 749 00ed 0B       		.uleb128 0xb
+ 750 00ee 3B       		.uleb128 0x3b
+ 751 00ef 05       		.uleb128 0x5
+ 752 00f0 27       		.uleb128 0x27
+ 753 00f1 19       		.uleb128 0x19
+ 754 00f2 49       		.uleb128 0x49
+ 755 00f3 13       		.uleb128 0x13
+ 756 00f4 3C       		.uleb128 0x3c
+ 757 00f5 19       		.uleb128 0x19
+ 758 00f6 01       		.uleb128 0x1
+ 759 00f7 13       		.uleb128 0x13
+ 760 00f8 00       		.byte	0
+ 761 00f9 00       		.byte	0
+ 762 00fa 14       		.uleb128 0x14
+ 763 00fb 2E       		.uleb128 0x2e
+ 764 00fc 01       		.byte	0x1
+ 765 00fd 3F       		.uleb128 0x3f
+ 766 00fe 19       		.uleb128 0x19
+ 767 00ff 03       		.uleb128 0x3
+ 768 0100 0E       		.uleb128 0xe
+ 769 0101 3A       		.uleb128 0x3a
+ 770 0102 0B       		.uleb128 0xb
+ 771 0103 3B       		.uleb128 0x3b
+ 772 0104 0B       		.uleb128 0xb
+ 773 0105 27       		.uleb128 0x27
+ 774 0106 19       		.uleb128 0x19
+ 775 0107 3C       		.uleb128 0x3c
+ 776 0108 19       		.uleb128 0x19
+ 777 0109 01       		.uleb128 0x1
+ 778 010a 13       		.uleb128 0x13
+ 779 010b 00       		.byte	0
+ 780 010c 00       		.byte	0
+ 781 010d 15       		.uleb128 0x15
+ 782 010e 2E       		.uleb128 0x2e
+ 783 010f 00       		.byte	0
+ 784 0110 3F       		.uleb128 0x3f
+ 785 0111 19       		.uleb128 0x19
+ 786 0112 03       		.uleb128 0x3
+ 787 0113 0E       		.uleb128 0xe
+ 788 0114 3A       		.uleb128 0x3a
+ 789 0115 0B       		.uleb128 0xb
+ 790 0116 3B       		.uleb128 0x3b
+ 791 0117 0B       		.uleb128 0xb
+ 792 0118 27       		.uleb128 0x27
+ARM GAS  C:\Users\tiantiaf\AppData\Local\Temp\cclaxls4.s 			page 16
+
+
+ 793 0119 19       		.uleb128 0x19
+ 794 011a 3C       		.uleb128 0x3c
+ 795 011b 19       		.uleb128 0x19
+ 796 011c 00       		.byte	0
+ 797 011d 00       		.byte	0
+ 798 011e 16       		.uleb128 0x16
+ 799 011f 2E       		.uleb128 0x2e
+ 800 0120 01       		.byte	0x1
+ 801 0121 3F       		.uleb128 0x3f
+ 802 0122 19       		.uleb128 0x19
+ 803 0123 03       		.uleb128 0x3
+ 804 0124 0E       		.uleb128 0xe
+ 805 0125 3A       		.uleb128 0x3a
+ 806 0126 0B       		.uleb128 0xb
+ 807 0127 3B       		.uleb128 0x3b
+ 808 0128 0B       		.uleb128 0xb
+ 809 0129 27       		.uleb128 0x27
+ 810 012a 19       		.uleb128 0x19
+ 811 012b 49       		.uleb128 0x49
+ 812 012c 13       		.uleb128 0x13
+ 813 012d 3C       		.uleb128 0x3c
+ 814 012e 19       		.uleb128 0x19
+ 815 012f 01       		.uleb128 0x1
+ 816 0130 13       		.uleb128 0x13
+ 817 0131 00       		.byte	0
+ 818 0132 00       		.byte	0
+ 819 0133 17       		.uleb128 0x17
+ 820 0134 2E       		.uleb128 0x2e
+ 821 0135 01       		.byte	0x1
+ 822 0136 3F       		.uleb128 0x3f
+ 823 0137 19       		.uleb128 0x19
+ 824 0138 03       		.uleb128 0x3
+ 825 0139 0E       		.uleb128 0xe
+ 826 013a 3A       		.uleb128 0x3a
+ 827 013b 0B       		.uleb128 0xb
+ 828 013c 3B       		.uleb128 0x3b
+ 829 013d 0B       		.uleb128 0xb
+ 830 013e 27       		.uleb128 0x27
+ 831 013f 19       		.uleb128 0x19
+ 832 0140 49       		.uleb128 0x49
+ 833 0141 13       		.uleb128 0x13
+ 834 0142 3C       		.uleb128 0x3c
+ 835 0143 19       		.uleb128 0x19
+ 836 0144 00       		.byte	0
+ 837 0145 00       		.byte	0
+ 838 0146 00       		.byte	0
+ 839              		.section	.debug_loc,"",%progbits
+ 840              	.Ldebug_loc0:
+ 841              	.LLST0:
+ 842 0000 02000000 		.4byte	.LVL10
+ 843 0004 0A000000 		.4byte	.LVL12
+ 844 0008 0200     		.2byte	0x2
+ 845 000a 30       		.byte	0x30
+ 846 000b 9F       		.byte	0x9f
+ 847 000c 0A000000 		.4byte	.LVL12
+ 848 0010 0C000000 		.4byte	.LFE39
+ 849 0014 0100     		.2byte	0x1
+ARM GAS  C:\Users\tiantiaf\AppData\Local\Temp\cclaxls4.s 			page 17
+
+
+ 850 0016 50       		.byte	0x50
+ 851 0017 00000000 		.4byte	0
+ 852 001b 00000000 		.4byte	0
+ 853              		.section	.debug_aranges,"",%progbits
+ 854 0000 2C000000 		.4byte	0x2c
+ 855 0004 0200     		.2byte	0x2
+ 856 0006 00000000 		.4byte	.Ldebug_info0
+ 857 000a 04       		.byte	0x4
+ 858 000b 00       		.byte	0
+ 859 000c 0000     		.2byte	0
+ 860 000e 0000     		.2byte	0
+ 861 0010 00000000 		.4byte	.LFB37
+ 862 0014 3C000000 		.4byte	.LFE37-.LFB37
+ 863 0018 00000000 		.4byte	.LFB38
+ 864 001c 08000000 		.4byte	.LFE38-.LFB38
+ 865 0020 00000000 		.4byte	.LFB39
+ 866 0024 0C000000 		.4byte	.LFE39-.LFB39
+ 867 0028 00000000 		.4byte	0
+ 868 002c 00000000 		.4byte	0
+ 869              		.section	.debug_ranges,"",%progbits
+ 870              	.Ldebug_ranges0:
+ 871 0000 00000000 		.4byte	.LFB37
+ 872 0004 3C000000 		.4byte	.LFE37
+ 873 0008 00000000 		.4byte	.LFB38
+ 874 000c 08000000 		.4byte	.LFE38
+ 875 0010 00000000 		.4byte	.LFB39
+ 876 0014 0C000000 		.4byte	.LFE39
+ 877 0018 00000000 		.4byte	0
+ 878 001c 00000000 		.4byte	0
+ 879              		.section	.debug_line,"",%progbits
+ 880              	.Ldebug_line0:
+ 881 0000 EA000000 		.section	.debug_str,"MS",%progbits,1
+ 881      0200A800 
+ 881      00000201 
+ 881      FB0E0D00 
+ 881      01010101 
+ 882              	.LASF33:
+ 883 0000 4359424C 		.ascii	"CYBLE_ERROR_L2CAP_PSM_NOT_REGISTERED\000"
+ 883      455F4552 
+ 883      524F525F 
+ 883      4C324341 
+ 883      505F5053 
+ 884              	.LASF32:
+ 885 0025 4359424C 		.ascii	"CYBLE_ERROR_L2CAP_PSM_ALREADY_REGISTERED\000"
+ 885      455F4552 
+ 885      524F525F 
+ 885      4C324341 
+ 885      505F5053 
+ 886              	.LASF52:
+ 887 004e 4359424C 		.ascii	"CYBLE_CALLBACK_T\000"
+ 887      455F4341 
+ 887      4C4C4241 
+ 887      434B5F54 
+ 887      00
+ 888              	.LASF28:
+ 889 005f 4359424C 		.ascii	"CYBLE_ERROR_TX_POWER_READ\000"
+ 889      455F4552 
+ARM GAS  C:\Users\tiantiaf\AppData\Local\Temp\cclaxls4.s 			page 18
+
+
+ 889      524F525F 
+ 889      54585F50 
+ 889      4F574552 
+ 890              	.LASF68:
+ 891 0079 50756C73 		.ascii	"Pulse_Init.c\000"
+ 891      655F496E 
+ 891      69742E63 
+ 891      00
+ 892              	.LASF66:
+ 893 0086 50756C73 		.ascii	"Pulse_ADC_SAR_Seq_GetResult16\000"
+ 893      655F4144 
+ 893      435F5341 
+ 893      525F5365 
+ 893      715F4765 
+ 894              	.LASF30:
+ 895 00a4 4359424C 		.ascii	"CYBLE_ERROR_SEC_FAILED\000"
+ 895      455F4552 
+ 895      524F525F 
+ 895      5345435F 
+ 895      4641494C 
+ 896              	.LASF58:
+ 897 00bb 50756C73 		.ascii	"Pulse_ADC_SAR_Seq_Init\000"
+ 897      655F4144 
+ 897      435F5341 
+ 897      525F5365 
+ 897      715F496E 
+ 898              	.LASF35:
+ 899 00d2 4359424C 		.ascii	"CYBLE_ERROR_L2CAP_CHANNEL_NOT_FOUND\000"
+ 899      455F4552 
+ 899      524F525F 
+ 899      4C324341 
+ 899      505F4348 
+ 900              	.LASF2:
+ 901 00f6 73686F72 		.ascii	"short int\000"
+ 901      7420696E 
+ 901      7400
+ 902              	.LASF17:
+ 903 0100 73697A65 		.ascii	"sizetype\000"
+ 903      74797065 
+ 903      00
+ 904              	.LASF18:
+ 905 0109 4359424C 		.ascii	"CYBLE_ERROR_OK\000"
+ 905      455F4552 
+ 905      524F525F 
+ 905      4F4B00
+ 906              	.LASF39:
+ 907 0118 4359424C 		.ascii	"CYBLE_ERROR_FLASH_WRITE_NOT_PERMITED\000"
+ 907      455F4552 
+ 907      524F525F 
+ 907      464C4153 
+ 907      485F5752 
+ 908              	.LASF41:
+ 909 013d 4359424C 		.ascii	"CYBLE_ERROR_HARDWARE_FAILURE\000"
+ 909      455F4552 
+ 909      524F525F 
+ 909      48415244 
+ 909      57415245 
+ARM GAS  C:\Users\tiantiaf\AppData\Local\Temp\cclaxls4.s 			page 19
+
+
+ 910              	.LASF40:
+ 911 015a 4359424C 		.ascii	"CYBLE_ERROR_MIC_AUTH_FAILED\000"
+ 911      455F4552 
+ 911      524F525F 
+ 911      4D49435F 
+ 911      41555448 
+ 912              	.LASF19:
+ 913 0176 4359424C 		.ascii	"CYBLE_ERROR_INVALID_PARAMETER\000"
+ 913      455F4552 
+ 913      524F525F 
+ 913      494E5641 
+ 913      4C49445F 
+ 914              	.LASF23:
+ 915 0194 4359424C 		.ascii	"CYBLE_ERROR_OOB_NOT_AVAILABLE\000"
+ 915      455F4552 
+ 915      524F525F 
+ 915      4F4F425F 
+ 915      4E4F545F 
+ 916              	.LASF65:
+ 917 01b2 6D735F69 		.ascii	"ms_isr_Stop\000"
+ 917      73725F53 
+ 917      746F7000 
+ 918              	.LASF64:
+ 919 01be 6D735F69 		.ascii	"ms_isr_StartEx\000"
+ 919      73725F53 
+ 919      74617274 
+ 919      457800
+ 920              	.LASF10:
+ 921 01cd 75696E74 		.ascii	"uint16\000"
+ 921      313600
+ 922              	.LASF20:
+ 923 01d4 4359424C 		.ascii	"CYBLE_ERROR_INVALID_OPERATION\000"
+ 923      455F4552 
+ 923      524F525F 
+ 923      494E5641 
+ 923      4C49445F 
+ 924              	.LASF60:
+ 925 01f2 50756C73 		.ascii	"Pulse_ADC_SAR_Seq_StartConvert\000"
+ 925      655F4144 
+ 925      435F5341 
+ 925      525F5365 
+ 925      715F5374 
+ 926              	.LASF70:
+ 927 0211 70756C73 		.ascii	"pulse\000"
+ 927      6500
+ 928              	.LASF12:
+ 929 0217 696E7431 		.ascii	"int16\000"
+ 929      3600
+ 930              	.LASF9:
+ 931 021d 75696E74 		.ascii	"uint8\000"
+ 931      3800
+ 932              	.LASF51:
+ 933 0223 4359424C 		.ascii	"CYBLE_API_RESULT_T\000"
+ 933      455F4150 
+ 933      495F5245 
+ 933      53554C54 
+ 933      5F5400
+ARM GAS  C:\Users\tiantiaf\AppData\Local\Temp\cclaxls4.s 			page 20
+
+
+ 934              	.LASF54:
+ 935 0236 53746F70 		.ascii	"StopTimer\000"
+ 935      54696D65 
+ 935      7200
+ 936              	.LASF24:
+ 937 0240 4359424C 		.ascii	"CYBLE_ERROR_NO_CONNECTION\000"
+ 937      455F4552 
+ 937      524F525F 
+ 937      4E4F5F43 
+ 937      4F4E4E45 
+ 938              	.LASF69:
+ 939 025a 473A5C47 		.ascii	"G:\\GitHub_Code\\firmware_pulse\\fw-pulse\\fw-BLE-M"
+ 939      69744875 
+ 939      625F436F 
+ 939      64655C66 
+ 939      69726D77 
+ 940 0289 6F746F72 		.ascii	"otor\\fw-stone\\Pulse.cydsn\000"
+ 940      5C66772D 
+ 940      73746F6E 
+ 940      655C5075 
+ 940      6C73652E 
+ 941              	.LASF22:
+ 942 02a3 4359424C 		.ascii	"CYBLE_ERROR_INSUFFICIENT_RESOURCES\000"
+ 942      455F4552 
+ 942      524F525F 
+ 942      494E5355 
+ 942      46464943 
+ 943              	.LASF13:
+ 944 02c6 666C6F61 		.ascii	"float\000"
+ 944      7400
+ 945              	.LASF6:
+ 946 02cc 6C6F6E67 		.ascii	"long long int\000"
+ 946      206C6F6E 
+ 946      6720696E 
+ 946      7400
+ 947              	.LASF16:
+ 948 02da 63796973 		.ascii	"cyisraddress\000"
+ 948      72616464 
+ 948      72657373 
+ 948      00
+ 949              	.LASF29:
+ 950 02e7 4359424C 		.ascii	"CYBLE_ERROR_BT_ON_NOT_COMPLETED\000"
+ 950      455F4552 
+ 950      524F525F 
+ 950      42545F4F 
+ 950      4E5F4E4F 
+ 951              	.LASF4:
+ 952 0307 6C6F6E67 		.ascii	"long int\000"
+ 952      20696E74 
+ 952      00
+ 953              	.LASF26:
+ 954 0310 4359424C 		.ascii	"CYBLE_ERROR_REPEATED_ATTEMPTS\000"
+ 954      455F4552 
+ 954      524F525F 
+ 954      52455045 
+ 954      41544544 
+ 955              	.LASF67:
+ARM GAS  C:\Users\tiantiaf\AppData\Local\Temp\cclaxls4.s 			page 21
+
+
+ 956 032e 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 956      4320342E 
+ 956      392E3320 
+ 956      32303135 
+ 956      30333033 
+ 957 0361 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
+ 957      20726576 
+ 957      6973696F 
+ 957      6E203232 
+ 957      31323230 
+ 958 0394 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 958      66756E63 
+ 958      74696F6E 
+ 958      2D736563 
+ 958      74696F6E 
+ 959              	.LASF25:
+ 960 03bc 4359424C 		.ascii	"CYBLE_ERROR_NO_DEVICE_ENTITY\000"
+ 960      455F4552 
+ 960      524F525F 
+ 960      4E4F5F44 
+ 960      45564943 
+ 961              	.LASF1:
+ 962 03d9 756E7369 		.ascii	"unsigned char\000"
+ 962      676E6564 
+ 962      20636861 
+ 962      7200
+ 963              	.LASF43:
+ 964 03e7 4359424C 		.ascii	"CYBLE_ERROR_FLASH_WRITE\000"
+ 964      455F4552 
+ 964      524F525F 
+ 964      464C4153 
+ 964      485F5752 
+ 965              	.LASF0:
+ 966 03ff 7369676E 		.ascii	"signed char\000"
+ 966      65642063 
+ 966      68617200 
+ 967              	.LASF7:
+ 968 040b 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 968      206C6F6E 
+ 968      6720756E 
+ 968      7369676E 
+ 968      65642069 
+ 969              	.LASF57:
+ 970 0422 54696D65 		.ascii	"Timer_Pulse_Start\000"
+ 970      725F5075 
+ 970      6C73655F 
+ 970      53746172 
+ 970      7400
+ 971              	.LASF27:
+ 972 0434 4359424C 		.ascii	"CYBLE_ERROR_GAP_ROLE\000"
+ 972      455F4552 
+ 972      524F525F 
+ 972      4741505F 
+ 972      524F4C45 
+ 973              	.LASF8:
+ 974 0449 756E7369 		.ascii	"unsigned int\000"
+ 974      676E6564 
+ARM GAS  C:\Users\tiantiaf\AppData\Local\Temp\cclaxls4.s 			page 22
+
+
+ 974      20696E74 
+ 974      00
+ 975              	.LASF31:
+ 976 0456 4359424C 		.ascii	"CYBLE_ERROR_L2CAP_PSM_WRONG_ENCODING\000"
+ 976      455F4552 
+ 976      524F525F 
+ 976      4C324341 
+ 976      505F5053 
+ 977              	.LASF48:
+ 978 047b 4359424C 		.ascii	"CYBLE_ERROR_CHAR_IS_NOT_DISCOVERED\000"
+ 978      455F4552 
+ 978      524F525F 
+ 978      43484152 
+ 978      5F49535F 
+ 979              	.LASF3:
+ 980 049e 73686F72 		.ascii	"short unsigned int\000"
+ 980      7420756E 
+ 980      7369676E 
+ 980      65642069 
+ 980      6E7400
+ 981              	.LASF53:
+ 982 04b1 496E6974 		.ascii	"InitializeSystem\000"
+ 982      69616C69 
+ 982      7A655379 
+ 982      7374656D 
+ 982      00
+ 983              	.LASF15:
+ 984 04c2 63686172 		.ascii	"char\000"
+ 984      00
+ 985              	.LASF50:
+ 986 04c7 4359424C 		.ascii	"CYBLE_ERROR_STACK_BUSY\000"
+ 986      455F4552 
+ 986      524F525F 
+ 986      53544143 
+ 986      4B5F4255 
+ 987              	.LASF44:
+ 988 04de 4359424C 		.ascii	"CYBLE_ERROR_CONTROLLER_BUSY\000"
+ 988      455F4552 
+ 988      524F525F 
+ 988      434F4E54 
+ 988      524F4C4C 
+ 989              	.LASF59:
+ 990 04fa 50756C73 		.ascii	"Pulse_ADC_SAR_Seq_Start\000"
+ 990      655F4144 
+ 990      435F5341 
+ 990      525F5365 
+ 990      715F5374 
+ 991              	.LASF21:
+ 992 0512 4359424C 		.ascii	"CYBLE_ERROR_MEMORY_ALLOCATION_FAILED\000"
+ 992      455F4552 
+ 992      524F525F 
+ 992      4D454D4F 
+ 992      52595F41 
+ 993              	.LASF42:
+ 994 0537 4359424C 		.ascii	"CYBLE_ERROR_UNSUPPORTED_FEATURE_OR_PARAMETER_VALUE\000"
+ 994      455F4552 
+ 994      524F525F 
+ARM GAS  C:\Users\tiantiaf\AppData\Local\Temp\cclaxls4.s 			page 23
+
+
+ 994      554E5355 
+ 994      50504F52 
+ 995              	.LASF62:
+ 996 056a 50756C73 		.ascii	"Pulse_ADC_SAR_Seq_IsEndConversion\000"
+ 996      655F4144 
+ 996      435F5341 
+ 996      525F5365 
+ 996      715F4973 
+ 997              	.LASF61:
+ 998 058c 4379426C 		.ascii	"CyBle_Start\000"
+ 998      655F5374 
+ 998      61727400 
+ 999              	.LASF11:
+ 1000 0598 75696E74 		.ascii	"uint32\000"
+ 1000      333200
+ 1001              	.LASF5:
+ 1002 059f 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1002      20756E73 
+ 1002      69676E65 
+ 1002      6420696E 
+ 1002      7400
+ 1003              	.LASF14:
+ 1004 05b1 646F7562 		.ascii	"double\000"
+ 1004      6C6500
+ 1005              	.LASF37:
+ 1006 05b8 4359424C 		.ascii	"CYBLE_ERROR_GATT_DB_INVALID_ATTR_HANDLE\000"
+ 1006      455F4552 
+ 1006      524F525F 
+ 1006      47415454 
+ 1006      5F44425F 
+ 1007              	.LASF36:
+ 1008 05e0 4359424C 		.ascii	"CYBLE_ERROR_L2CAP_PSM_NOT_IN_RANGE\000"
+ 1008      455F4552 
+ 1008      524F525F 
+ 1008      4C324341 
+ 1008      505F5053 
+ 1009              	.LASF63:
+ 1010 0603 4C45445F 		.ascii	"LED_Write\000"
+ 1010      57726974 
+ 1010      6500
+ 1011              	.LASF55:
+ 1012 060d 52656164 		.ascii	"ReadPulseData\000"
+ 1012      50756C73 
+ 1012      65446174 
+ 1012      6100
+ 1013              	.LASF46:
+ 1014 061b 4359424C 		.ascii	"CYBLE_ERROR_NTF_DISABLED\000"
+ 1014      455F4552 
+ 1014      524F525F 
+ 1014      4E54465F 
+ 1014      44495341 
+ 1015              	.LASF38:
+ 1016 0634 4359424C 		.ascii	"CYBLE_ERROR_DEVICE_ALREADY_EXISTS\000"
+ 1016      455F4552 
+ 1016      524F525F 
+ 1016      44455649 
+ 1016      43455F41 
+ARM GAS  C:\Users\tiantiaf\AppData\Local\Temp\cclaxls4.s 			page 24
+
+
+ 1017              	.LASF56:
+ 1018 0656 54696D65 		.ascii	"Timer_Pulse_Init\000"
+ 1018      725F5075 
+ 1018      6C73655F 
+ 1018      496E6974 
+ 1018      00
+ 1019              	.LASF45:
+ 1020 0667 4359424C 		.ascii	"CYBLE_ERROR_MAX\000"
+ 1020      455F4552 
+ 1020      524F525F 
+ 1020      4D415800 
+ 1021              	.LASF49:
+ 1022 0677 4359424C 		.ascii	"CYBLE_ERROR_INVALID_STATE\000"
+ 1022      455F4552 
+ 1022      524F525F 
+ 1022      494E5641 
+ 1022      4C49445F 
+ 1023              	.LASF34:
+ 1024 0691 4359424C 		.ascii	"CYBLE_ERROR_L2CAP_CONNECTION_ENTITY_NOT_FOUND\000"
+ 1024      455F4552 
+ 1024      524F525F 
+ 1024      4C324341 
+ 1024      505F434F 
+ 1025              	.LASF47:
+ 1026 06bf 4359424C 		.ascii	"CYBLE_ERROR_IND_DISABLED\000"
+ 1026      455F4552 
+ 1026      524F525F 
+ 1026      494E445F 
+ 1026      44495341 
+ 1027              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
